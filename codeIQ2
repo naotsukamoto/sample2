@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	int *x;
+    int *y;
+	int i;
+	int count11 = 0,count22 = 0,count33 = 0,count12 = 0,count13 = 0, count23 = 0;
+	int count_all = 0;
+	int number;
+
+	printf("本は何冊あるのかな？：");
+	scanf("%d",&number);
+	putchar('\n');
+
+	x = calloc(1,sizeof(int));
+	y = calloc(1,sizeof(int));
+    
+    //左から1つずつ、右から2つずつ
+    printf("********1-2*********\n");
+    for(i = 1; i <= number; i++){
+    	x[i] = i + 1;
+		y[i] = number - 2 * i;
+
+        if(x[i] > y[i])
+		  break;
+
+		printf("%2d回目　x = %d, y = %d ",i, x[i], y[i]);
+		  putchar('\n');
+
+		if(x[i] ==  y[i]){
+		    printf("xとyは%d冊目の本で手が重なります。\n",x[i]);
+			count12++;
+		}
+	}
+	//左から1つずつ、右から3つずつ
+	printf("********1-3*********\n");
+	for(i = 1; i <= number; i++){
+    	x[i] = i + 1;
+		y[i] = number - 3 * i;
+
+		if(x[i] > y[i])
+		  break;
+
+		printf("%2d回目　x = %d, y = %d ",i, x[i], y[i]);
+		  putchar('\n');
+
+		if(x[i] ==  y[i]){
+		    printf("xとyは%d冊目の本で手が重なります。\n",x[i]);
+			count13++;
+		}
+	}
+	//左から1つずつ、右から1つずつ
+	printf("********1-1*********\n");
+	for(i = 1; i <= number; i++){
+    	x[i] = i + 1;
+		y[i] = number - i;
+
+		if(x[i] > y[i])
+		  break;
+
+		printf("%2d回目　x = %d, y = %d ",i, x[i], y[i]);
+		  putchar('\n');
+
+		if(x[i] ==  y[i]){
+		    printf("xとyは%d冊目の本で手が重なります。\n",x[i]);
+			count11++;
+		}
+	}
+	//左から2つずつ、右から3つずつ
+	printf("********2-3*********\n");
+	for(i = 1; i <= number; i++){
+    	x[i] = 2 * i + 1;
+		y[i] = number - 3 * i;
+
+		if(x[i] > y[i])
+		  break;
+
+		printf("%2d回目　x = %d, y = %d ",i, x[i], y[i]);
+		  putchar('\n');
+
+		if(x[i] ==  y[i]){
+		    printf("xとyは%d冊目の本で手が重なります。\n",x[i]);
+			count23++;
+		}
+	}
+	//左から2つずつ、右から2つずつ
+	printf("********2-2*********\n");
+	for(i = 1; i <= number; i++){
+    	x[i] = 2 * i + 1;
+		y[i] = number - 2 * i;
+
+		if(x[i] > y[i])
+		  break;
+
+		printf("%2d回目　x = %d, y = %d ",i, x[i], y[2 * i]);
+		  putchar('\n');
+
+		if(x[i] ==  y[i]){
+		    printf("xとyは%d冊目の本で手が重なります。\n",x[i]);
+			count22++;
+		}
+	}
+	//右から3つずつ、左から3つずつ
+	printf("********3-3*********\n");
+	for(i = 1; i <= number; i++){
+    	x[i] = 3 * i + 1;
+		y[i] = number - 3 * i;
+
+		if(x[i] > y[i])
+		  break;
+
+		printf("%2d回目　x = %d, y = %d ",i, x[i], y[i]);
+		  putchar('\n');
+
+		if(x[i] ==  y[i]){
+		    printf("xとyは%d冊目の本で手が重なります。\n",x[i]);
+			count33++;
+		}
+	}
+
+	count_all = count11 + count22 + count33 + 2 * (count12 + count13 + count23);
+
+	printf("等しいのが%d個ありました。\n",count_all);
+	
+	return 0;
+}
