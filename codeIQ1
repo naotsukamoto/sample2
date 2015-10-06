@@ -1,0 +1,37 @@
+//フィボナッチ数列の任意の項を求めるプログラム
+
+//桁数が多すぎて、long型では無理
+
+#include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_NO 9999999
+
+int main(void)
+{
+
+  int i,j,k;
+  int x;
+  int *a;
+
+  a = (int *)malloc(MAX_NO);
+
+  a[0] = 0;
+  a[1] = 1;
+  
+  for(i = 2; i < MAX_NO; i++)
+      a[i] = (a[i - 2] % 1000 + a[i - 1] % 1000) % 1000;
+  
+  printf("入力データ数：");
+  scanf("%d",&x);
+
+  for(j = 0; j < x; j++){
+    printf("何項目？：");
+    scanf("%d",&k);
+
+    printf("%d項目の下三桁：%d\n",k,a[k]);
+  }
+
+  return 0;
+}
