@@ -1,0 +1,20 @@
+while max = gets.to_i
+	puts "NO!" if max == 1
+	puts 0 if max == 2
+	puts 1 if max == 3
+	puts 2 if max == 4
+	puts 2 if max == 5
+	count = 0
+	if max >= 6
+		a=[2,3]
+		(4...max).each do |i|
+			(2..i-1).each do |j|
+				i % j == 0 ? break : count += 1
+			end
+			a << i if count == i-2
+			count = 0
+		end
+		print a.length
+		puts "\n"
+	end
+end
